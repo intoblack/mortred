@@ -19,7 +19,7 @@ BLOOM_FILTER = SpiderUrlFilter().bloomfilter
 
 class Kr36(Spider):
 
-    name = "test"
+    name = "kr36"
     allowed_domains = ["36kr.com"]
     child_link = re.compile(ur'/p/\d+\.html')
     start_urls = [
@@ -55,7 +55,6 @@ class Kr36(Spider):
             yield item
 
     def make_content(self, ps):
-        print ps
         content = []
         for p in ps:
             if len(p) > 5 and not self.__is_starts(p):

@@ -62,15 +62,8 @@ class StockHeXun(Spider):
                 yield item
 
     def make_content(self, ps):
-        print ps
         content = []
         for p in ps:
             if len(p) > 5 :
                 content.append('  %s' % p)
         return '\r\n'.join(content)
-
-    def __is_starts(self, word):
-        for start in self.stop_contents:
-            if word.startswith(start):
-                return True
-        return False
