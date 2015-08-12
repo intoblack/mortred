@@ -35,13 +35,11 @@ class Kr36(Spider):
     def parse(self, response):
         filename = response.url.split('//')[1]
         if response.url in self.start_urls:
-            for link in response.xpath('//h1/a/@href').extract():
-                match = self.child_link.match(link)
-                if match:
-                    url = '%s%s' % ('http://www.36kr.com', link)
-                    if url not in BLOOM_FILTER:
-                        BLOOM_FILTER.add(url)
-                        yield Request(url, callback=self.parse)
+            for link in response.xpath("//a[contains(@class, 'title') and contains(@class, 'info_flow_news_title')]/@href").extract():
+                url = '%s%s' % ('http://www.36kr.com', link)
+                if url not in BLOOM_FILTER:
+                   BLOOM_FILTER.add(url)
+                   yield Request(url, callback=self.parse)
         else:
             item = WenkrItem()
             item['title'] = response.xpath(
