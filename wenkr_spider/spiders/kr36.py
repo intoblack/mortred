@@ -1,5 +1,5 @@
 # coding=utf-8
-#!/usr/bin/env python
+
 
 from scrapy import Spider
 from scrapy.selector import Selector
@@ -10,10 +10,7 @@ import time
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
 from utils import SpiderUrlFilter
-
-
 BLOOM_FILTER = SpiderUrlFilter().bloomfilter
 
 
